@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const AuthLayout = () => {
+const TabsLayouts = () => {
   return (
     <View>
-      <Text>AuthLayout</Text>
+      <Text>TabsLayouts</Text>
     </View>
   )
 }
 
-export default AuthLayout
+export default TabsLayouts
 
 const styles = StyleSheet.create({})
