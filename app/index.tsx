@@ -7,7 +7,7 @@ export default function Index() {
   return (
     <View style={style.container}>
           <Text>Index</Text>
-          <Link href='/profile' style={{color: 'blue'}}>Go to Profile</Link>
+          <Link href='/home' style={{color: 'blue'}}>Go to Home</Link>
     </View>
   )
 }

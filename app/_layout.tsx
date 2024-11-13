@@ -34,7 +34,11 @@ if (!fontsLoaded && !error) {
 
 
   return (
-    <Stack>
+    <Stack
+      screenOptions={{
+      
+    }}
+    >
         <Stack.Screen name='index'/>      
     </Stack>
   )
