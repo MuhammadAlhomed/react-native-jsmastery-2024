@@ -1,22 +1,42 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { Link } from 'expo-router'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { images } from '@/constants'
 
 export default function Index() {
   return (
-    <View style={style.container}>
-          <Text>Index</Text>
-          <Link href='/home' style={{color: 'blue'}}>Go to Home</Link>
-    </View>
+    <SafeAreaView style={style.safeAreaView}>
+      <ScrollView contentContainerStyle={{height: '100%'}}>
+        <View style={style.view}>
+
+          <Image
+            source={images.logo}
+            style={{
+              height: 50
+              
+            }}
+            resizeMode='contain'
+          />
+
+          
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 
 const style = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+    safeAreaView: {
+      backgroundColor: '#161622',
+      height: '100%'
+  },
+  view: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 4,
+  }
 })
