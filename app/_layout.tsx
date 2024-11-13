@@ -34,7 +34,9 @@ if (!fontsLoaded && !error) {
 
 
   return (
-    <Slot/>
+    <Stack>
+        <Stack.Screen name='index' options={{headerShown:false}}/>      
+    </Stack>
   )
 
 }
