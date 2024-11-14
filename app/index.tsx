@@ -60,14 +60,13 @@ const styles = StyleSheet.create({
     safeAreaView: {
       backgroundColor: '#161622',
       height: '100%',
-      padding: 12,
   },
   view: {
-    width: '100%',
     minHeight: '85%',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 4,
+    margin: 12,
   },
   landingText: {
     fontSize: 30,
