@@ -1,8 +1,9 @@
 
 import { Alert } from 'react-native';
-import { Account, Avatars, Client, Databases, ID } from 'react-native-appwrite';
+import { Account, Avatars, Client, Databases, ID, Query } from 'react-native-appwrite';
 
-export const appwriteConfig = {
+// appwrite config
+export const config = {
     endpoint: 'https://cloud.appwrite.io/v1',
     platform: 'com.m.alhumed.aora',
     projectId: '6739ab42000042f8604c',
@@ -16,9 +17,9 @@ export const appwriteConfig = {
 const client = new Client();
 
 client
-    .setEndpoint(appwriteConfig.endpoint) // Your Appwrite Endpoint
-    .setProject(appwriteConfig.projectId) // Your project ID
-    .setPlatform(appwriteConfig.platform) // Your application ID or bundle ID.
+    .setEndpoint(config.endpoint) // Your Appwrite Endpoint
+    .setProject(config.projectId) // Your project ID
+    .setPlatform(config.platform) // Your application ID or bundle ID.
 
 const account = new Account(client);
 const avatars = new Avatars(client);
@@ -45,8 +46,8 @@ export const createUser = async (email: string, password: string, username: stri
 
 
         const newUser = await databases.createDocument(
-            appwriteConfig.databaseId,
-            appwriteConfig.userCollectionId,
+            config.databaseId,
+            config.userCollectionId,
             ID.unique(),
             {
                 account_id: newAccount.$id,
@@ -74,5 +75,28 @@ export const signIn = (email: string, password: string) => {
         console.log(error)
         Alert.alert('Error', error.message)
         throw new Error(error); 
+    }
+}
+
+export const getCurrentUser = async () => {
+    try {
+        // Get account
+        const currentAccount = await account.get()
+
+        if (!currentAccount) throw Error
+
+        // Get User
+        const currentUser = await databases.listDocuments(
+            config.databaseId,
+            config.userCollectionId,
+            [Query.equal('account_id', currentAccount.$id)]
+        )
+
+        if (!currentUser) throw Error
+        
+        return currentUser.documents[0]
+    } catch (error) {
+        console.log(error);
+        
     }
 }
